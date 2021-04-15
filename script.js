@@ -482,11 +482,11 @@ function redraw_charts(g3_o) {
 
 $(document).ready(function() {
 
-    d3.csv("/data/bitcointreasuries.csv").then(function (data) {
+    d3.csv("bitcointreasuries.csv").then(function (data) {
         console.log(data);
-        msg = message;
+        msg = data;
         message_received = true;
-        g3_o = g3_options(message);
+        g3_o = g3_options(msg);
         console.log("Drawing charts")
         draw_charts(g3_o);
     });
