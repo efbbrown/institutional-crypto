@@ -9,19 +9,22 @@ function g3_options(message) {
     // G3 options
     var options = {
         layouts: {
-            bitcointreasuries: {
-                parent: "#content-wrapper #bitcointreasuries",
-                parent_section: "#content-wrapper #bitcointreasuries",
+            bitcoinpurchases: {
+                parent: "#content-wrapper #bitcoinpurchases",
+                parent_section: "#content-wrapper #bitcoinpurchases",
                 function_chart: g3_breakout_chart,
+                // function_chart: g3_breakout_chart,
                 redraw: true,
-                function_parse: parse_breakout,
+                function_parse: parse_bitcoinpurchases,
                 margin_ratios: {
                     "top": 0.1, "right": 0.1, "bottom": 0.1, "left": 0.1
                 },
                 data_raw: message,
                 time_format: "%Y-%m-%d",
-                time_col: "Latest_Purchase_Date",
-                value_col: "Bitcoin",
+                time_col: "latest_acquisition_date",
+                value_col: "cumulative_btc",
+                date_start: new Date(2018, 1, 1),
+                date_end: new Date,
                 chart_title: "Institutional Bitcoin Investments"
             }
         }
@@ -38,18 +41,6 @@ function g3_options(message) {
 function g3_ts_chart(c_o) {
 
     d3.selectAll(c_o.parent + " *").remove();
-
-    if (c_o.data_parsed.labels.length === 0) {
-
-        c_o.parentDiv = d3.select(c_o.parent);
-
-        c_o.parentDiv.append("span")
-            .attr("class", "blink-forever")
-            .html("No data came through for this chart")
-            .style("font-size", "26px")
-            .style("margin", "80px auto");
-
-    } else {
 
         function number_format(number, decimals, dec_point, thousands_sep) {
         // *     example: number_format(1234.56, 2, ',', ' ');
@@ -131,10 +122,6 @@ function g3_ts_chart(c_o) {
                 }
             }
         });
-
-
-
-    }
 
 }
 
@@ -248,7 +235,7 @@ function g3_breakout_chart(c_o) {
         /*------------------------------------------*/
 
         // Breakout vlines
-        c_o.breakout_group = c_o.chart.append("g")
+/*         c_o.breakout_group = c_o.chart.append("g")
             .attr("class", "breakout-lines");
         c_o.breakout_group.selectAll("line")
             .data(c_o.data_parsed.breakout_locations)
@@ -257,16 +244,16 @@ function g3_breakout_chart(c_o) {
             .attr("x2", function(d) { return c_o.x(c_o.data_parsed.data[d][c_o.time_col]); })
             .attr("y1", 0)
             .attr("y2", c_o.height);
-
+ */
         // Points
-        c_o.circle_group = c_o.chart.append("g")
+        /* c_o.circle_group = c_o.chart.append("g")
             .attr("class", "circle-group");
         c_o.circle_group.selectAll("circle")
             .data(c_o.data_parsed.data).enter()
             .append("circle")
             .attr("cx", function(d) { return c_o.x(d[c_o.time_col]); })
             .attr("cy", function(d) { return c_o.y(d[c_o.value_col]); })
-            .attr("r", 3);
+            .attr("r", 3); */
 
         // Main path
         c_o.line_group = c_o.chart.append("g")
@@ -283,7 +270,7 @@ function g3_breakout_chart(c_o) {
           .attr("d", c_o.line);
 
         // Mean lines
-        c_o.mean_group = c_o.chart.append("g")
+/*         c_o.mean_group = c_o.chart.append("g")
             .attr("class", "mean-lines");
         c_o.mean_group.selectAll("line")
             .data(c_o.data_parsed.means)
@@ -350,6 +337,8 @@ function g3_breakout_chart(c_o) {
             .attr("y", 20)
             .text(function(d) { return g3_format(c_o.data_parsed.data[d], c_o.time_col); });
 
+*/
+
     }
 
 }
@@ -380,22 +369,60 @@ function parse_breakout(c_o) {
 
     c_o.data_parsed = Object.assign({}, c_o.data_raw);
 
-    c_o.data_parsed.data = c_o.data_raw.data.map(function(d) {
+    c_o.data_parsed.data = c_o.data_raw.map(function(d) {
         var new_d = {};
         new_d[c_o.time_col] = c_o.parseTime(d[c_o.time_col]);
         new_d[c_o.value_col] = d[c_o.value_col];
         return new_d;
     });
 
-    c_o.data_parsed.anomalies = c_o.data_raw.anomalies.map(function(d) {
+    /* c_o.data_parsed.anomalies = c_o.data_raw.anomalies.map(function(d) {
         var new_d = {};
         new_d[c_o.time_col] = c_o.parseTime(d[c_o.time_col]);
         new_d[c_o.value_col] = d["anoms"];
         new_d["expected_value"] = d["expected_value"];
         return new_d;
-    });
+    }); */
 
     return c_o.data_parsed;
+}
+
+function parse_bitcoinpurchases(c_o) {
+
+    c_o.parseTime = d3.timeParse(c_o.time_format);
+
+    c_o.data_parsed = Object.assign({}, c_o.data_raw);
+
+    c_o.data_parsed.data = c_o.data_raw
+        .sort((a, b) => d3.ascending(a[c_o.time_col], b[c_o.time_col]));
+
+    c_o.cumulative_btc = d3.cumsum(c_o.data_parsed.data, d => d["est_amount_btc"]);
+
+    c_o.data_parsed.data = c_o.data_parsed.data.map((d, i) => {
+        var new_d = {};
+        new_d[c_o.value_col] = c_o.cumulative_btc[i];
+        new_d[c_o.time_col] = c_o.parseTime(d[c_o.time_col]);
+        // new_d[c_o.value_col] = +d[c_o.value_col].replaceAll(",", "");
+        return new_d;
+    });
+
+    c_o.date_range = d3.timeDays(c_o.date_start, c_o.date_end);
+
+    c_o.data_datey = c_o.date_range.map(d1 => {
+        const pre_date_purchases = c_o.data_parsed.data.filter(d2 => {
+            return d2[c_o.time_col] <= d1
+        }); // .sum(d2 => d2[c_o.value_col])
+        const value = pre_date_purchases.length > 0 ? d3.max(pre_date_purchases, d => d[c_o.value_col]) : 0
+        let res = {}
+        res[c_o.time_col] = d1;
+        res[c_o.value_col] = value
+        return res
+    });
+
+    return {
+        "data": c_o.data_datey
+    };
+
 }
 
 /*------------------------------------------*/
@@ -421,17 +448,14 @@ function g3_format(d, variable) {
     return fmts[fmt_map[variable]](d[variable]);
 }
 
-function g3_format(d, variable) {
-    return fmts[fmt_map[variable]](d[variable]);
-}
-
 /*------------------------------------------*/
 /*            Meta Functions                */
 /*------------------------------------------*/
 
 function draw_chart(c_o) {
 
-
+    console.log("Drawing chart with options:");
+    console.log(c_o);
 
     // Only draw chart if that section is active (visible)
     if ($(c_o.parent_section).hasClass("active")) {
@@ -482,7 +506,7 @@ function redraw_charts(g3_o) {
 
 $(document).ready(function() {
 
-    d3.csv("bitcointreasuries.csv").then(function (data) {
+    d3.csv("bitcoinpurchases.csv").then(function (data) {
         console.log(data);
         msg = data;
         message_received = true;

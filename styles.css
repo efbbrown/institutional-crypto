@@ -1,0 +1,243 @@
+/******************************* */
+/*    Constants                 */
+/******************************* */
+/******************************* */
+/*    Animations                */
+/******************************* */
+@keyframes fade-in {
+  from {
+    opacity: 0; }
+  50% {
+    opacity: 0.5; }
+  to {
+    opacity: 1; } }
+@keyframes fade-out {
+  from {
+    opacity: 1; }
+  50% {
+    opacity: 0.5; }
+  to {
+    opacity: 0; } }
+nav {
+  animation-name: fade-in;
+  animation-duration: 0.2s; }
+
+/******************************* */
+/*    Bootstrap Resets          */
+/******************************* */
+.container {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  min-height: 100%; }
+
+h2 {
+  margin: 0; }
+
+label {
+  font-family: "Raleway", sans-serif; }
+
+/******************************* */
+/*    Class Styles              */
+/******************************* */
+.flex {
+  display: flex; }
+
+.grow {
+  flex-grow: 1; }
+
+.flex-col {
+  flex-direction: column; }
+
+/******************************* */
+/*    Big Things                */
+/******************************* */
+html {
+  box-sizing: border-box; }
+
+html, body {
+  min-height: 100%;
+  display: flex;
+  width: 100%;
+  background: #777870; }
+
+.container {
+  display: flex;
+  flex-direction: column; }
+
+/******************************* */
+/*    Navbar                    */
+/******************************* */
+nav {
+  display: flex;
+  top: 0;
+  background-color: #333333; }
+  nav .nav-wrapper {
+    height: 60px;
+    width: 100%;
+    max-width: 1355px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between; }
+    nav .nav-wrapper ul {
+      display: flex;
+      align-self: center;
+      margin-bottom: 0;
+      padding: 0 20px; }
+  nav h2 {
+    font-size: 26px;
+    font-family: "Raleway", sans-serif;
+    line-height: 2;
+    text-align: center;
+    color: #fff;
+    font-weight: 600; }
+
+/******************************* */
+/*    Hamburger Menu In Navbar  */
+/******************************* */
+#slideout-menu {
+  width: 240px;
+  min-height: 400px;
+  position: absolute;
+  margin: 20px;
+  top: 60px;
+  background: rgba(204, 238, 248, 0.9);
+  border-radius: 4px;
+  border: 2px solid #fff;
+  padding: 20px;
+  font-family: "Raleway", sans-serif;
+  right: -280px;
+  opacity: 0; }
+  #slideout-menu > div {
+    padding-bottom: 10px; }
+  #slideout-menu a {
+    text-decoration: underline; }
+  #slideout-menu.drawn {
+    opacity: 1;
+    transition: opacity 0.6s ease-in-out;
+    right: 0; }
+
+#menu-bars {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: 20px; }
+  #menu-bars .menu-bar {
+    width: 35px;
+    height: 3px;
+    background-color: #999;
+    margin: 4px 0;
+    transition: 0.4s; }
+  #menu-bars.change .menu-bar {
+    background-color: rgba(204, 238, 248, 0.9); }
+
+.modal-footer {
+  text-align: left; }
+
+#raise_issue button:focus, #raise_issue input:focus {
+  outline: none;
+  box-shadow: none; }
+#raise_issue #issue-button {
+  background-color: #777870;
+  border: 1px solid #777870;
+  text-decoration: underline; }
+  #raise_issue #issue-button:hover {
+    border: 1px solid #777870;
+    background: rgba(159, 223, 242, 0.9);
+    transition: background 0.4s ease-in-out; }
+#raise_issue #raise_issue_api {
+  background: rgba(204, 238, 248, 0.9); }
+  #raise_issue #raise_issue_api:hover {
+    background: rgba(159, 223, 242, 0.9);
+    transition: background 0.4s ease-in-out; }
+#raise_issue input:focus {
+  border: 1px solid #02abac; }
+#raise_issue .selectize-input.focus {
+  box-shadow: none;
+  border: 1px solid #02abac; }
+
+#data1 table {
+  margin: 0 auto 20px; }
+
+#main-article {
+  display: flex;
+  flex-direction: column;
+  background-size: cover;
+  flex-grow: 1;
+  position: relative;
+  margin-bottom: 60px; }
+  #main-article #grain {
+    background: url("img/noise.jpg");
+    background-repeat: repeat;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    z-index: 99;
+    opacity: 0.1;
+    pointer-events: none; }
+
+#popup-control-panel {
+  height: 340px;
+  background-color: #333;
+  opacity: 0.7;
+  position: absolute;
+  bottom: -280px;
+  width: 100%; }
+
+#content-wrapper {
+  height: 500px;
+  margin: 150px; }
+  #content-wrapper > section {
+    display: none; }
+    #content-wrapper > section.active {
+      display: flex;
+      flex-grow: 1; }
+    #content-wrapper > section * {
+      z-index: 1;
+      opacity: 1; }
+
+.g3-breakout .chart-title {
+  font-family: "Raleway", sans-serif;
+  fill: #0d0f05;
+  font-size: 20px; }
+.g3-breakout .borders line {
+  stroke-width: 1px;
+  stroke: #666; }
+.g3-breakout .circle-group circle {
+  fill: #ec6b2d; }
+.g3-breakout .line-group path {
+  stroke: #ec6b2d; }
+.g3-breakout .breakout-lines line {
+  stroke-width: 1px;
+  stroke: #16E7F5;
+  stroke-dasharray: 4 3; }
+.g3-breakout .breakout-lines text {
+  text-anchor: end;
+  fill: #fff;
+  font-size: 11px; }
+.g3-breakout .mean-lines line {
+  stroke-width: 1px;
+  stroke: #16E7F5;
+  stroke-dasharray: 4 3; }
+.g3-breakout .mean-lines text {
+  text-anchor: end;
+  fill: #fff;
+  font-size: 11px; }
+.g3-breakout .anomaly-group .actual-group circle {
+  fill: #e7182d; }
+.g3-breakout .anomaly-group .expected-group circle {
+  fill: #ee5d6c; }
+.g3-breakout .anomaly-group .v-lines line {
+  stroke-width: 1px;
+  stroke: #ea384a;
+  stroke-dasharray: 4 3; }
+.g3-breakout #legend {
+  fill: none;
+  stroke: #666; }
+  .g3-breakout #legend text {
+    fill: #0d0f05; }
+
+/*# sourceMappingURL=styles.css.map */
