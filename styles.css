@@ -76,6 +76,7 @@ html, body {
   display: flex;
   width: 100%;
   background: #c9c9c9;
+  margin: 0;
 }
 
 .container {
@@ -204,7 +205,6 @@ nav h2 {
   background-size: cover;
   flex-grow: 1;
   position: relative;
-  margin-bottom: 60px;
 }
 #main-article #grain {
   background: url("img/noise.jpg");
