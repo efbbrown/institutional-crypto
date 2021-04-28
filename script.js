@@ -10,7 +10,7 @@ function g3_options(message) {
     var options = {
         layouts: {
             bitcoinpurchases: {
-                parent: "#content-wrapper #bitcoinpurchases",
+                parent: "#bitcoinpurchases",
                 parent_section: "#content-wrapper #bitcoinpurchases",
                 function_chart: g3_breakout_chart,
                 // function_chart: g3_breakout_chart,
@@ -400,22 +400,14 @@ function draw_chart(c_o) {
     console.log("Drawing chart with options:");
     console.log(c_o);
 
-    // Only draw chart if that section is active (visible)
-    if ($(c_o.parent_section).hasClass("active")) {
-
-        if (Object.keys(c_o).indexOf("function_parse") !== -1) {
-            c_o.data_parsed = c_o.function_parse(c_o);
-            // c_o.data_parsed = c_o.data_raw.map(c_o.function_parse);
-        } else {
-            c_o.data_parsed = c_o.data_raw;
-        }
-
-        var res = c_o.function_chart(c_o);
-
-        /*var res = c_o.function(c_o);
-        return res;*/
-
+    if (Object.keys(c_o).indexOf("function_parse") !== -1) {
+        c_o.data_parsed = c_o.function_parse(c_o);
+        // c_o.data_parsed = c_o.data_raw.map(c_o.function_parse);
+    } else {
+        c_o.data_parsed = c_o.data_raw;
     }
+
+    var res = c_o.function_chart(c_o);
 
 }
 
