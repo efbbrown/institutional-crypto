@@ -21,9 +21,9 @@ function g3_options(message) {
                 },
                 data_raw: message,
                 time_format: "%Y-%m-%d",
-                time_col: "latest_acquisition_date",
+                time_col: "latest_transaction_date",
                 value_col: "cumulative_btc",
-                date_start: new Date(2018, 1, 1),
+                date_start: new Date(2020, 4, 1),
                 date_end: new Date,
                 chart_title: "Institutional Bitcoin Investments"
             }
@@ -37,93 +37,6 @@ function g3_options(message) {
 /*------------------------------------------*/
 /*            Chart Functions               */
 /*------------------------------------------*/
-
-function g3_ts_chart(c_o) {
-
-    d3.selectAll(c_o.parent + " *").remove();
-
-        function number_format(number, decimals, dec_point, thousands_sep) {
-        // *     example: number_format(1234.56, 2, ',', ' ');
-        // *     return: '1 234,56'
-            number = (number + '').replace(',', '').replace(' ', '');
-            var n = !isFinite(+number) ? 0 : +number,
-                    prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
-                    sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
-                    dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
-                    s = '',
-                    toFixedFix = function (n, prec) {
-                        var k = Math.pow(10, prec);
-                        return '' + Math.round(n * k) / k;
-                    };
-            // Fix for IE parseFloat(0.55).toFixed(0) = 0;
-            s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
-            if (s[0].length > 3) {
-                s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
-            }
-            if ((s[1] || '').length < prec) {
-                s[1] = s[1] || '';
-                s[1] += new Array(prec - s[1].length + 1).join('0');
-            }
-            return s.join(dec);
-        }
-
-        var cvs = $(c_o.parent).append("<canvas id='" + c_o.parent + "-canvas'></canvas>");
-        var ctx = document.getElementById(c_o.parent + "-canvas").getContext("2d");
-
-        Chart.defaults.global.defaultFontColor = "white";
-        new Chart(ctx, {
-            type: 'line',
-            data: c_o.data_parsed,
-            options: {
-                title: {
-                    display: true,
-                    text: 'Visits Over Time'
-                },
-                elements: {
-                    line: {
-                        tension: 0, // disables bezier curves
-                    }
-                },
-                tooltips: {
-                    callbacks: {
-                        title: function(tooltipItem, data) {
-                            return d3.utcFormat("%d-%m-%Y")(data['labels'][tooltipItem[0]['index']]);
-                        },
-                        label: function(tooltipItem, chart){
-                            var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                            return datasetLabel + ': ' + number_format(tooltipItem.yLabel, 0, ".", ",");
-                        }
-                    }
-                },
-                scales: {
-                    xAxes: [{
-                        scaleLabel: {
-                            display: true
-                        },
-                        type: "time",
-                        time: {
-                            unit: "day",
-
-                            displayFormats: {
-                                'day': 'MMM DD'
-                            }
-                        },
-
-                        position: "bottom"
-                    }],
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true,
-                            callback: function(value, index, values) {
-                                return number_format(value, 0, ".", ",");
-                            }
-                        }
-                    }]
-                }
-            }
-        });
-
-}
 
 function g3_breakout_chart(c_o) {
 
@@ -185,7 +98,8 @@ function g3_breakout_chart(c_o) {
         c_o.y = d3.scaleLinear().range([c_o.height, 0]);
 
         c_o.x.domain(d3.extent(c_o.data_parsed.data, function(d) { return d[c_o.time_col]; }));
-        c_o.y.domain([0, d3.max(c_o.data_parsed.data, function(d) { return d[c_o.value_col]; }) * 1.1]);
+        c_o.y.domain([0, d3.max(c_o.data_parsed.data, function (d) { return d[c_o.value_col]; }) * 1.1]);
+        // c_o.y.domain([0, 21000000]);
 
         /*------------------------------------------*/
         /*            Axes                          */
@@ -262,12 +176,26 @@ function g3_breakout_chart(c_o) {
             .x(function(d) { return c_o.x(d[c_o.time_col]); })
             .y(function(d) { return c_o.y(d[c_o.value_col]); });
         c_o.line_group.append("path")
-          .datum(c_o.data_parsed.data)
-          .attr("fill", "none")
-          .attr("stroke-linejoin", "round")
-          .attr("stroke-linecap", "round")
-          .attr("stroke-width", 1.5)
-          .attr("d", c_o.line);
+            .datum(c_o.data_parsed.data)
+            .attr("fill", "none")
+            .attr("stroke-linejoin", "round")
+            .attr("stroke-linecap", "round")
+            .attr("stroke-width", 1.5)
+            .attr("d", c_o.line);
+
+        // Main path
+        /* c_o.line_group_supply = c_o.chart.append("g")
+            .attr("class", "line-group");
+        c_o.line_supply = d3.line()
+            .x(function (d) { return c_o.x(d["date"]); })
+            .y(function (d) { return c_o.y(d["supply"]); });
+        c_o.line_group_supply.append("path")
+            .datum(c_o.data_parsed.supply)
+            .attr("fill", "none")
+            .attr("stroke-linejoin", "round")
+            .attr("stroke-linecap", "round")
+            .attr("stroke-width", 1.5)
+            .attr("d", c_o.line_supply); */
 
         // Mean lines
 /*         c_o.mean_group = c_o.chart.append("g")
@@ -387,6 +315,19 @@ function parse_breakout(c_o) {
     return c_o.data_parsed;
 }
 
+function create_bitcoinsupply() {
+
+    const bitcoinsupply = [
+        { "date": new Date(2009, 1, 2), "supply": 0 },
+        { "date": new Date(2012, 11, 28), "supply": 10500000 },
+        { "date": new Date(2016, 07, 9), "supply": 15750000 },
+        { "date": new Date(2020, 05, 11), "supply": 18375000 }
+    ]
+
+    return bitcoinsupply
+
+}
+
 function parse_bitcoinpurchases(c_o) {
 
     c_o.parseTime = d3.timeParse(c_o.time_format);
@@ -394,6 +335,7 @@ function parse_bitcoinpurchases(c_o) {
     c_o.data_parsed = Object.assign({}, c_o.data_raw);
 
     c_o.data_parsed.data = c_o.data_raw
+        .filter(d => { return d["transaction_type"] !== "Mining"})
         .sort((a, b) => d3.ascending(a[c_o.time_col], b[c_o.time_col]));
 
     c_o.cumulative_btc = d3.cumsum(c_o.data_parsed.data, d => d["est_amount_btc"]);
@@ -420,7 +362,8 @@ function parse_bitcoinpurchases(c_o) {
     });
 
     return {
-        "data": c_o.data_datey
+        "data": c_o.data_datey,
+        "supply": create_bitcoinsupply()
     };
 
 }
@@ -506,7 +449,7 @@ function redraw_charts(g3_o) {
 
 $(document).ready(function() {
 
-    d3.csv("bitcoinpurchases.csv").then(function (data) {
+    d3.csv("bitcointransactions.csv").then(function (data) {
         console.log(data);
         msg = data;
         message_received = true;
