@@ -108,16 +108,25 @@ function g3_breakout_chart(c_o) {
         c_o.xAxis = c_o.chart.append("g")
             .attr("class", "x axis")
             .attr("transform", "translate(0," + c_o.height + ")")
-            .call(d3.axisBottom(c_o.x));
+            .call(
+                d3.axisBottom(c_o.x)
+                    .tickSizeOuter(0)
+                    .tickSizeInner(-c_o.height)
+            );
 
         c_o.yAxis = c_o.chart.append("g")
             .attr("class", "y axis")
-            .call(d3.axisLeft(c_o.y));
+            .call(
+                d3.axisLeft(c_o.y)
+                    .ticks(5)
+                    .tickSizeOuter(0)
+                    .tickSizeInner(-c_o.width)
+            );
 
         c_o.borders = c_o.chart.append("g")
             .attr("class", "borders");
 
-        c_o.borders.append("line")
+        /* c_o.borders.append("line")
             .attr("x1", 0)
             .attr("x2", c_o.width)
             .attr("y1", 0)
@@ -127,7 +136,7 @@ function g3_breakout_chart(c_o) {
             .attr("x1", c_o.width)
             .attr("x2", c_o.width)
             .attr("y1", 0)
-            .attr("y1", c_o.height);
+            .attr("y1", c_o.height); */
 
         /*------------------------------------------*/
         /*            Title                         */
@@ -335,7 +344,8 @@ function parse_bitcoinpurchases(c_o) {
     c_o.data_parsed = Object.assign({}, c_o.data_raw);
 
     c_o.data_parsed.data = c_o.data_raw
-        .filter(d => { return d["transaction_type"] !== "Mining"})
+        .filter(d => { return d["transaction_type"] !== "Mining" })
+        .filter(d => { return d["confident_amount_btc"] === "TRUE" })
         .sort((a, b) => d3.ascending(a[c_o.time_col], b[c_o.time_col]));
 
     c_o.cumulative_btc = d3.cumsum(c_o.data_parsed.data, d => d["est_amount_btc"]);
