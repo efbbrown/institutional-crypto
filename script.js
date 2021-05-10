@@ -182,6 +182,7 @@ function g3_breakout_chart(c_o) {
         c_o.line_group = c_o.chart.append("g")
             .attr("class", "line-group");
         c_o.line = d3.line()
+            .curve(d3.curveStep)
             .x(function(d) { return c_o.x(d[c_o.time_col]); })
             .y(function(d) { return c_o.y(d[c_o.value_col]); });
         c_o.line_group.append("path")
