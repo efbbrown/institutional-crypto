@@ -342,41 +342,66 @@ function parse_bitcoinpurchases(c_o) {
 
     c_o.parseTime = d3.timeParse(c_o.time_format);
 
-    c_o.data_parsed = Object.assign({}, c_o.data_raw);
-
-    c_o.data_parsed.data = c_o.data_raw
+    c_o.data_parsey = c_o.data_raw
         .filter(d => { return d["transaction_type"] !== "Mining" })
         .filter(d => { return d["confident_amount_btc"] === "TRUE" })
+        .filter(d => { return d["confident_cost_usd"] === "TRUE" })
         .sort((a, b) => d3.ascending(a[c_o.time_col], b[c_o.time_col]));
-
-    c_o.cumulative_btc = d3.cumsum(c_o.data_parsed.data, d => d["est_amount_btc"]);
-
-    c_o.data_parsed.data = c_o.data_parsed.data.map((d, i) => {
-        var new_d = {};
-        new_d[c_o.value_col] = c_o.cumulative_btc[i];
-        new_d[c_o.time_col] = c_o.parseTime(d[c_o.time_col]);
-        // new_d[c_o.value_col] = +d[c_o.value_col].replaceAll(",", "");
-        return new_d;
-    });
 
     c_o.date_range = d3.timeDays(c_o.date_start, c_o.date_end);
 
     c_o.data_datey = c_o.date_range.map(d1 => {
-        const pre_date_purchases = c_o.data_parsed.data.filter(d2 => {
-            return d2[c_o.time_col] <= d1
-        }); // .sum(d2 => d2[c_o.value_col])
-        const value = pre_date_purchases.length > 0 ? d3.max(pre_date_purchases, d => d[c_o.value_col]) : 0
-        let res = {}
+        let res = {};
+        const pre_date_purchases = c_o.data_parsey.filter(d2 => {
+            return new Date(d2[c_o.time_col]) <= d1
+        });
+        c_o.value_cols.map(value_col => {
+            const value = pre_date_purchases.length > 0 ? d3.sum(pre_date_purchases, d => d[value_col]) : 0
+            res[value_col] = value
+        });
         res[c_o.time_col] = d1;
-        res[c_o.value_col] = value
         return res
     });
 
+    c_o.data_datey.columns = Object.keys(c_o.data_datey[0])
+
+    const data_pivoted = pivot(
+        c_o.data_datey,  // data
+        c_o.value_cols,  // cols
+        ["metric"],  // values
+        ["total"]);  // opts
+
     return {
+        // "supply": create_bitcoinsupply(),
         "data": c_o.data_datey,
-        "supply": create_bitcoinsupply()
+        "data_pivoted": data_pivoted
     };
 
+}
+
+function pivot(data, cols, names, values, opts) {
+    const columns = Array.isArray(cols) ? cols : data.columns.filter(cols);
+
+    values[1] = values[1] || (d => d);
+
+    const keepCols = data.columns.filter(c => !columns.includes(c));
+    const long = [];
+    columns.forEach(col => {
+        data.forEach(d => {
+            const row = {};
+            keepCols.forEach(c => {
+                row[c] = d[c];
+            });
+            // TODO, add an option to ignore if fails a truth test to approximate `values_drop_na`
+            names.forEach(n => {
+                const nClean = Array.isArray(n) ? n.length === 1 ? [...n, q => q] : n : [n, q => q];
+                row[nClean[0]] = nClean[1](col);
+                row[values[0]] = values[1](d[col]);
+                long.push(row);
+            });
+        });
+    });
+    return long;
 }
 
 /*------------------------------------------*/
