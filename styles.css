@@ -77,9 +77,8 @@ html {
 
 html, body {
   min-height: 100%;
-  display: flex;
   width: 100%;
-  background: #c9c9c9;
+  background: #EEF5F9;
   margin: 0;
 }
 
@@ -98,7 +97,6 @@ nav {
 }
 nav .nav-wrapper {
   height: 60px;
-  width: 100%;
   max-width: 1355px;
   margin: auto;
   display: flex;
@@ -175,12 +173,12 @@ nav h2 {
   box-shadow: none;
 }
 #raise_issue #issue-button {
-  background-color: #c9c9c9;
-  border: 1px solid #c9c9c9;
+  background-color: #EEF5F9;
+  border: 1px solid #EEF5F9;
   text-decoration: underline;
 }
 #raise_issue #issue-button:hover {
-  border: 1px solid #c9c9c9;
+  border: 1px solid #EEF5F9;
   background: rgba(159, 223, 242, 0.9);
   transition: background 0.4s ease-in-out;
 }
@@ -205,8 +203,8 @@ nav h2 {
 
 #main-article {
   display: grid;
-  position: relative;
   grid-template-rows: auto 1fr;
+  height: 100%;
 }
 
 #top-menu {
@@ -218,22 +216,23 @@ nav h2 {
   font-family: Helvetica, sans-serif;
 }
 
-#bitcoinpurchases * {
-  z-index: 1;
-  opacity: 1;
+#chart-wrapper {
+  display: grid;
+  grid-template-rows: auto 1fr 1fr 1fr;
+  max-width: 100%;
+  margin: 10px;
 }
 
 .g3-breakout .chart-title {
   font-family: "Raleway", sans-serif;
-  fill: #0d0f05;
-  font-size: 20px;
+  font-size: 13px;
 }
 .g3-breakout .borders line {
   stroke-width: 1px;
-  stroke: #666;
+  stroke: #ddd;
 }
 .g3-breakout .axis line {
-  stroke: #666;
+  stroke: #ddd;
 }
 .g3-breakout .axis path {
   display: none;
@@ -277,7 +276,7 @@ nav h2 {
 }
 .g3-breakout #legend {
   fill: none;
-  stroke: #666;
+  stroke: #ddd;
 }
 .g3-breakout #legend text {
   fill: #0d0f05;

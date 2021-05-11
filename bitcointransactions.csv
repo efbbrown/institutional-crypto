@@ -1,27 +1,29 @@
-entity_name,transaction_type,earlies_transaction_date,latest_transaction_date,announcement_date,announcement_link,est_amount_btc,verified_amount_btc,est_cost_usd,verified_cost_usd,est_cost_usd_per_btc,verified_cost_usd_per_btc
-Satoshi Nakomoto,Mining,,2010-01-25,2013-04-17,https://bitslog.com/2013/04/17/the-well-deserved-fortune-of-satoshi-nakamoto/,1100000,FALSE,0,,,
-Cameron & Tyler Winklevoss,Purchase,,2012-04-30,2017-12-19,https://www.nytimes.com/2017/12/19/technology/bitcoin-winklevoss-twins.html,120000,FALSE,,FALSE,,FALSE
-MicroStrategy Inc.,Purchase,,2020-08-11,2020-08-11,https://www.microstrategy.com/content/dam/website-assets/collateral/financial-documents/press-release-archive/MicroStrategy%20Adopts%20Bitcoin%20as%20Primary%20Treasury%20Reserve%20Asset.pdf,21545,TRUE,250000000,TRUE,,
-MicroStrategy Inc.,Purchase,,2020-09-14,2020-09-15,https://twitter.com/michael_saylor/status/1305850568531947520,16796,TRUE,175000000,TRUE,,
-Square Inc.,Purchase,,2020-10-07,2020-10-08,https://images.ctfassets.net/2d5q1td6cyxq/5sXNrlEh2mEnTvvhgtYOm2/737bcfdc15e2a1c3cbd9b9451710ce54/Square_Inc._Bitcoin_Investment_Whitepaper.pdf,4709,TRUE,50000000,TRUE,,TRUE
-Michael Saylor,Purchase,,2020-10-28,2020-10-28,https://twitter.com/michael_saylor/status/1321422012380753921?lang=en,17732,TRUE,175227624,TRUE,9882,TRUE
-MicroStrategy Inc.,Purchase,,2020-12-04,2020-12-04,https://twitter.com/michael_saylor/status/1334990791496884224,2574,TRUE,50000000,TRUE,,
-Mass Mutual,Purchase,,2020-12-10,2020-12-10,https://www.massmutual.com/about-us/news-and-press-releases/press-releases/2020/12/institutional-bitcoin-provider-nydig-announces-minority-stake-purchase-by-massmutual,5263,FALSE,100000000,TRUE,19000,
-MicroStrategy Inc.,Purchase,,2020-12-21,2020-12-21,https://twitter.com/michael_saylor/status/1341006691408752640,29646,TRUE,650000000,TRUE,,
-Russel Okung,Purchase,,2020-12-29,2020-12-30,https://www.cnbc.com/2020/12/30/russell-okungs-bitcoin-salary-could-trigger-more-pro-athletes-to-invest.html,,,,,,
-Marathon Digital Holdings,Purchase,,2021-01-24,2021-01-25,https://www.globenewswire.com/news-release/2021/01/25/2163436/0/en/Marathon-Invests-150-Million-in-Bitcoin.html,4812.66,TRUE,150000000,TRUE,,
+entity_name,transaction_type,earlies_transaction_date,latest_transaction_date,announcement_date,announcement_link,est_amount_btc,confident_amount_btc,est_cost_usd,confident_cost_usd,est_cost_usd_per_btc,confident_cost_usd_per_btc
+Satoshi Nakomoto,Mining,,2010-01-25,2013-04-17,https://bitslog.com/2013/04/17/the-well-deserved-fortune-of-satoshi-nakamoto/,1100000.0,FALSE,0,,,
+Cameron & Tyler Winklevoss,Purchase,,2012-04-30,2017-12-19,https://www.nytimes.com/2017/12/19/technology/bitcoin-winklevoss-twins.html,120000.0,FALSE,0,FALSE,0,FALSE
+MicroStrategy Inc.,Purchase,,2020-08-11,2020-08-11,https://www.microstrategy.com/content/dam/website-assets/collateral/financial-documents/press-release-archive/MicroStrategy%20Adopts%20Bitcoin%20as%20Primary%20Treasury%20Reserve%20Asset.pdf,21545.0,TRUE,250000000,TRUE,,
+MicroStrategy Inc.,Purchase,,2020-09-14,2020-09-15,https://twitter.com/michael_saylor/status/1305850568531947520,16796.0,TRUE,175000000,TRUE,,
+Square Inc.,Purchase,,2020-10-07,2020-10-08,https://images.ctfassets.net/2d5q1td6cyxq/5sXNrlEh2mEnTvvhgtYOm2/737bcfdc15e2a1c3cbd9b9451710ce54/Square_Inc._Bitcoin_Investment_Whitepaper.pdf,4709.0,TRUE,50000000,TRUE,,TRUE
+Michael Saylor,Purchase,,2020-10-28,2020-10-28,https://twitter.com/michael_saylor/status/1321422012380753921?lang=en,17732.0,TRUE,175227624,TRUE,9882,TRUE
+MicroStrategy Inc.,Purchase,,2020-12-04,2020-12-04,https://twitter.com/michael_saylor/status/1334990791496884224,2574.0,TRUE,50000000,TRUE,,
+Mass Mutual,Purchase,,2020-12-10,2020-12-10,https://www.massmutual.com/about-us/news-and-press-releases/press-releases/2020/12/institutional-bitcoin-provider-nydig-announces-minority-stake-purchase-by-massmutual,5263.2,FALSE,100000000,TRUE,19000,
+MicroStrategy Inc.,Purchase,,2020-12-21,2020-12-21,https://twitter.com/michael_saylor/status/1341006691408752640,29646.0,TRUE,650000000,TRUE,,
+Russel Okung,Purchase,,2020-12-29,2020-12-30,https://www.cnbc.com/2020/12/30/russell-okungs-bitcoin-salary-could-trigger-more-pro-athletes-to-invest.html,240.7,FALSE,6500000,TRUE,27000,FALSE
+Marathon Digital Holdings,Purchase,,2021-01-24,2021-01-25,https://www.globenewswire.com/news-release/2021/01/25/2163436/0/en/Marathon-Invests-150-Million-in-Bitcoin.html,4812.7,TRUE,150000000,TRUE,,
 Marathon Digital Holdings,Mining,2021-01-01,2021-01-31,2021-04-05,"https://www.globenewswire.com/news-release/2021/04/05/2204284/0/en/Marathon-Digital-Holdings-Announces-Bitcoin-Production-and-Mining-Operation-Updates-for-the-First-Quarter-of-2021.html#:~:text=As%20a%20result%2C%20Marathon%20currently,price%20of%20%2431%2C168%20per%20BTC.",50.4,TRUE,0,,,
-MicroStrategy Inc.,Purchase,,2021-02-01,2021-02-02,https://twitter.com/michael_saylor/status/1356600103193182210,295,TRUE,10000000,TRUE,,
-Telsa Inc.,Purchase,,2021-02-07,2021-02-08,https://www.cnbc.com/2021/02/08/tesla-buys-1point5-billion-in-bitcoin.html,48000,TRUE,1500000000,TRUE,31250,TRUE
-Square Inc.,Purchase,,2021-02-23,2021-02-23,https://www.coindesk.com/square-announces-additional-170m-bitcoin-buy,3318,TRUE,170000000,TRUE,,
-MicroStrategy Inc.,Purchase,,2021-02-24,2021-02-24,https://www.microstrategy.com/content/dam/website-assets/collateral/financial-documents/press-release-archive/microstrategy-acquires-additional-19452-bitcoins-for-1-026-billion_02-24-2021.pdf,19452,TRUE,1026000000,TRUE,,
+MicroStrategy Inc.,Purchase,,2021-02-01,2021-02-02,https://twitter.com/michael_saylor/status/1356600103193182210,295.0,TRUE,10000000,TRUE,,
+Telsa Inc.,Purchase,,2021-02-07,2021-02-08,https://www.cnbc.com/2021/02/08/tesla-buys-1point5-billion-in-bitcoin.html,48000.0,TRUE,1500000000,TRUE,31250,TRUE
+Square Inc.,Purchase,,2021-02-23,2021-02-23,https://www.coindesk.com/square-announces-additional-170m-bitcoin-buy,3318.0,TRUE,170000000,TRUE,,
+MicroStrategy Inc.,Purchase,,2021-02-24,2021-02-24,https://www.microstrategy.com/content/dam/website-assets/collateral/financial-documents/press-release-archive/microstrategy-acquires-additional-19452-bitcoins-for-1-026-billion_02-24-2021.pdf,19452.0,TRUE,1026000000,TRUE,,
 Marathon Digital Holdings,Mining,2021-02-01,2021-02-28,2021-04-05,"https://www.globenewswire.com/news-release/2021/04/05/2204284/0/en/Marathon-Digital-Holdings-Announces-Bitcoin-Production-and-Mining-Operation-Updates-for-the-First-Quarter-of-2021.html#:~:text=As%20a%20result%2C%20Marathon%20currently,price%20of%20%2431%2C168%20per%20BTC.",43.4,TRUE,0,,,
-MicroStrategy Inc.,Purchase,,2021-03-01,2021-03-01,https://twitter.com/michael_saylor/status/1366375915559792640,328,TRUE,15000000,TRUE,,
-Meitu,Purchase,,2021-03-07,2021-03-07,https://www.coindesk.com/software-firm-meitu-buys-22m-of-ether-17-9m-bitcoin-for-its-treasury,379.1,TRUE,17900000,TRUE,47217,
-Meitu,Purchase,,2021-03-17,2021-03-17,https://www.coindesk.com/meitu-buys-more-bitcoin-ether-bringing-total-holdings-to-90m,386.086,TRUE,21600000,TRUE,55946,
-Telsa Inc.,Sale,,2021-03-31,2021-04-27,https://www.coindesk.com/tesla-sold-bitcoin-in-q1-for-proceeds-of-272m,4800,FALSE,-272000000,TRUE,,
-Marathon Digital Holdings,Mining,2021-03-01,2021-03-31,2021-04-05,"https://www.globenewswire.com/news-release/2021/04/05/2204284/0/en/Marathon-Digital-Holdings-Announces-Bitcoin-Production-and-Mining-Operation-Updates-for-the-First-Quarter-of-2021.html#:~:text=As%20a%20result%2C%20Marathon%20currently,price%20of%20%2431%2C168%20per%20BTC.",102.3,TRUE,0,,,
-Meitu,Purchase,,2021-04-08,2021-04-08,https://www.coindesk.com/chinese-web-firm-meitu-buys-10m-more-in-bitcoin,175.6,TRUE,10000000,TRUE,56948,
+MicroStrategy Inc.,Purchase,,2021-03-01,2021-03-01,https://twitter.com/michael_saylor/status/1366375915559792640,328.0,TRUE,15000000,TRUE,,
+Meitu,Purchase,,2021-03-07,2021-03-07,https://www.coindesk.com/software-firm-meitu-buys-22m-of-ether-17-9m-bitcoin-for-its-treasury,379.1,TRUE,17900000,TRUE,47217,TRUE
+Meitu,Purchase,,2021-03-17,2021-03-17,https://www.coindesk.com/meitu-buys-more-bitcoin-ether-bringing-total-holdings-to-90m,386.1,TRUE,21600000,TRUE,55946,TRUE
+Telsa Inc.,Sale,,2021-03-31,2021-04-27,https://www.coindesk.com/tesla-sold-bitcoin-in-q1-for-proceeds-of-272m,-4800.0,TRUE,-272000000,TRUE,,FALSE
+Marathon Digital Holdings,Mining,2021-03-01,2021-03-31,2021-04-05,"https://www.globenewswire.com/news-release/2021/04/05/2204284/0/en/Marathon-Digital-Holdings-Announces-Bitcoin-Production-and-Mining-Operation-Updates-for-the-First-Quarter-of-2021.html#:~:text=As%20a%20result%2C%20Marathon%20currently,price%20of%20%2431%2C168%20per%20BTC.",102.3,TRUE,0,FALSE,0,FALSE
+Meitu,Purchase,,2021-04-08,2021-04-08,https://www.coindesk.com/chinese-web-firm-meitu-buys-10m-more-in-bitcoin,175.6,TRUE,10000000,TRUE,56948,TRUE
 "Coinbase Global, Inc.",Purchase,,,,https://www.cnbc.com/2021/02/25/coinbases-crypto-holdings-jumped-ninefold-last-year-as-bitcoin-surged.html,,,,,,
-NZ Funds,Purchase,2020-10-01,2021-03-26,2021-03-26,https://www.coindesk.com/new-zealand-wealth-management-firm-bitcoin,1220,FALSE,12200000,TRUE,10000,
+NZ Funds,Purchase,2020-10-01,2021-03-26,2021-03-26,https://www.coindesk.com/new-zealand-wealth-management-firm-bitcoin,1220.0,FALSE,12200000,TRUE,10000,FALSE
 Thornton Place Condominium Corp,Purchase,,2021-03-19,2021-03-19,https://www.coindesk.com/canadian-property-firm-buys-bitcoin-in-hopes-of-eventually-scrapping-condo-fees,0.4,TRUE,20050,TRUE,52104,TRUE
+Mercado Libre,Purchase,2021-01-01,2021-03-31,2021-05-05,https://decrypt.co/70013/mercado-libre-has-invested-7-8-million-into-bitcoin,,FALSE,7800000,TRUE,,FALSE
+Mogo,Purchase,,,2020-12-23,https://decrypt.co/52474/canadian-fintech-company-invests-1-5-million-in-bitcoin,,FALSE,1500000,TRUE,,FALSE

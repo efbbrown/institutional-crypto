@@ -12,7 +12,7 @@ $nav-height: 60px
 
 // Colors
 
-$palette: (bg-base: #c9c9c9, bg-top: #333333, text-1: #0d0f05, text-2: #fff, accent-1: #ec6b2d, red: #e7182d, blue: #16E7F5, faint: #666)
+$palette: (bg-base: #EEF5F9, bg-top: #333333, text-1: #0d0f05, text-2: #fff, accent-1: #ec6b2d, red: #e7182d, blue: #16E7F5, faint: #ddd)
 
 $nav-bg-color: map-get($palette, "bg-top")
 $page-bg-color: map-get($palette, "bg-base")
@@ -89,7 +89,6 @@ html
 
 html, body
   min-height: 100%
-  display: flex
   width: 100%
   background: $page-bg-color
   margin: 0
@@ -110,7 +109,7 @@ nav
 
   .nav-wrapper
     height: 60px
-    width: $article-width
+    // width: $article-width
     max-width: $article-max-width
     margin: auto
     display: flex
@@ -221,8 +220,9 @@ nav
 
 #main-article
   display: grid
-  position: relative
+  // position: relative
   grid-template-rows: auto 1fr
+  height: 100%
 
 #top-menu
   background: #333
@@ -232,18 +232,18 @@ nav
     color: #c9c9c9
     font-family: Helvetica, sans-serif
 
-#bitcoinpurchases
-
-  *
-    z-index: 1
-    opacity: 1
+#chart-wrapper
+  display: grid
+  grid-template-rows: auto 1fr 1fr 1fr
+  max-width: 100%
+  margin: 10px
 
 .g3-breakout
 
   .chart-title
     font-family: $font-family-main
-    fill: map-get($palette, "text-1")
-    font-size: 20px
+    // fill: map-get($palette, "text-1")
+    font-size: 13px
 
   .borders
 
@@ -255,6 +255,15 @@ nav
 
     line
       stroke: map-get($palette, faint)
+    
+    .tick
+      
+      // &:nth-child(2)
+      //   display: none
+
+        // line
+        //   display: none
+          // stroke: blue
     
     path
       display: none
