@@ -19,7 +19,7 @@ function g3_options() {
             time_col: "latest_transaction_date",
             value_col: "est_amount_btc",
             currency_mark: "฿",
-            chart_title: "Bitcoin Acquired By Institutions",
+            chart_title: "฿ Purchased By Institutions",
         },
         transactions_usd: {
             parent: "#transactions-usd",
@@ -33,7 +33,7 @@ function g3_options() {
             time_col: "latest_transaction_date",
             value_col: "est_cost_usd",
             currency_mark: "$",
-            chart_title: "US Dollars Spent On Bitcoin By Institutions",
+            chart_title: "$USD Spent On ฿ By Institutions",
         },
         price_usd: {
             parent: "#price-usd",
@@ -47,7 +47,7 @@ function g3_options() {
             time_col: "Date_Parsed",
             value_col: "Open",
             currency_mark: "$",
-            chart_title: "Price Of A Bitcoin",
+            chart_title: "Price Of ฿",
         }
     };
 
