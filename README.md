@@ -26,3 +26,5 @@ The repository [nvk/bitcointreasuries.org](https://github.com/nvk/bitcointreasur
 are a good snapshot of the current state of institutional investment in bitcoin.
 This page is designed to add an understanding of how this aspect of bitcoin has
 changed over time.
+
+The bitcoin prices file was downloaded from coindesk at <https://www.coindesk.com/price/bitcoin>.

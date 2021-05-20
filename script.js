@@ -234,12 +234,12 @@ function create_bitcoinsupply() {
 
 function parse_bitcoinprices(g3_o) {
 
-    const parseTime = d3.timeParse("%b %d %Y");
+    const parseTime = d3.timeParse("%Y-%m-%d");
 
     g3_o.data_parsed["bitcoinprices"] = g3_o.data_raw["bitcoinprices"].map(d => {
         let res = {};
         res["Date_Parsed"] = parseTime(d["Date"]);
-        res["Open"] = +d["Open"];
+        res["Open"] = +d["24h Open (USD)"];
         return res
     });
 
@@ -397,7 +397,7 @@ $(document).ready(function() {
 
     Promise.all([
         d3.csv("bitcointransactions.csv"),
-        d3.tsv("bitcoinprices.tsv")
+        d3.csv("bitcoinprices.csv")
     ]).then(function (files) {
         g3_o.data_raw["bitcointransactions"] = files[0];
         g3_o.data_raw["bitcoinprices"] = files[1];
