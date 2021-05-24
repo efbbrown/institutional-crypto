@@ -203,22 +203,6 @@ function g3_breakout_chart(c_o) {
 /*            Parse Functions               */
 /*------------------------------------------*/
 
-function parse_ts_chart(data_raw) {
-
-    var result = {};
-    var labels = [];
-    var data = [];
-    for (var i = 0; i < data_raw.data.length; i++) {
-        var dates = Date.UTC(data_raw.data[i].year, (+data_raw.data[i].month) - 1, data_raw.data[i].day);
-        var observations = data_raw.data[i].count;
-        labels.push(dates);
-        data.push(observations);
-    }
-    result = { "labels": labels, "datasets": [{ "backgroundColor": "rgba(75,192,192,0.4)", "borderColor": "rgba(75,192,192,1)", "label": "Observations", "data": data }] };
-    return result;
-
-}
-
 function create_bitcoinsupply() {
 
     const bitcoinsupply = [

@@ -36,49 +36,13 @@ $font-family-main: "Raleway", sans-serif
   to
     opacity: 1
 
-@keyframes fade-out
-  from
-    opacity: 1
-  50%
-    opacity: 0.5
-  to
-    opacity: 0
-
-nav
+body
   animation-name: fade-in
-  animation-duration: 0.2s
+  animation-duration: 0.3s
 
-/********************************/
-/*    Bootstrap Resets          */
-/********************************/
-
-.container
-  width: 100%
-  margin: 0
-  padding: 0
-  min-height: 100%
-
-h2
-  margin: 0
-
-label
-  font-family: $font-family-main
-
-/********************************/
-/*    Class Styles              */
-/********************************/
-
-.flex
-  display: flex
-
-.grow
-  flex-grow: 1
-
-.flex-col
-  flex-direction: column
-
-.grid
-  display: grid
+#top-menu
+  animation-name: fade-in
+  animation-duration: 0.6s
 
 /********************************/
 /*    Big Things                */
@@ -92,131 +56,6 @@ html, body
   width: 100%
   background: $page-bg-color
   margin: 0
-
-.container
-  display: flex
-  flex-direction: column
-
-/********************************/
-/*    Navbar                    */
-/********************************/
-
-nav
-  display: flex
-  top: 0
-  background-color: $nav-bg-color
-  //box-shadow: 0 9px 6px -6px #aaa
-
-  .nav-wrapper
-    height: 60px
-    // width: $article-width
-    max-width: $article-max-width
-    margin: auto
-    display: flex
-    justify-content: space-between
-
-    ul
-      display: flex
-      align-self: center
-      margin-bottom: 0
-      padding: 0 20px
-
-  h2
-    font-size: 26px
-    font-family: $font-family-main
-    line-height: 2
-    text-align: center
-    color: map-get($palette, "text-2")
-    font-weight: 600
-
-
-/********************************/
-/*    Hamburger Menu In Navbar  */
-/********************************/
-
-#slideout-menu
-  width: $slideout-menu-width
-  min-height: 400px
-  position: absolute
-  margin: $sections-padding
-  top: $nav-height
-  background: $slideout-menu-color
-  border-radius: 4px
-  border: 2px solid #fff
-  padding: $sections-padding
-  font-family: $font-family-main
-  right: -$slideout-menu-width - (2*$sections-padding)
-  opacity: 0
-
-  > div
-    padding-bottom: 10px
-
-  a
-    text-decoration: underline
-
-  &.drawn
-    opacity: 1
-    transition: opacity .6s ease-in-out
-    right: 0
-
-#menu-bars
-  display: flex
-  flex-direction: column
-  justify-content: center
-  cursor: pointer
-  margin-left: $sections-padding
-
-  .menu-bar
-    width: 35px
-    height: 3px
-    background-color: #999
-    margin: 4px 0
-    transition: 0.4s
-
-  &.change .menu-bar
-    background-color: $slideout-menu-color
-
-.modal-footer
-  text-align: left
-
-#raise_issue
-
-  button, input
-
-    &:focus
-      outline: none
-      box-shadow: none
-
-  #issue-button
-    background-color: $page-bg-color
-    border: 1px solid $page-bg-color
-    text-decoration: underline
-
-    &:hover
-      border: 1px solid $page-bg-color
-      background: darken($slideout-menu-color, 10%)
-      transition: background .4s ease-in-out
-
-  #raise_issue_api
-    background: $slideout-menu-color
-
-    &:hover
-      background: darken($slideout-menu-color, 10%)
-      transition: background .4s ease-in-out
-
-  input
-
-    &:focus
-      border: 1px solid $load-button-color
-
-  .selectize-input.focus
-    box-shadow: none
-    border: 1px solid $load-button-color
-
-
-#data1 table
-  margin: 0 auto 20px
-
 
 #main-article
   display: grid
@@ -237,14 +76,16 @@ nav
   
   a  
     color: #c9c9c9
-
-  // #page-title
-
+  
 #chart-wrapper
   display: grid
   grid-template-rows: auto 1fr 1fr 1fr
   max-width: 100%
   margin: 10px
+
+/********************************/
+/*    Chart                     */
+/********************************/
 
 .g3-breakout
 
@@ -252,12 +93,6 @@ nav
     font-family: $font-family-main
     // fill: map-get($palette, "text-1")
     font-size: 13px
-
-  .borders
-
-    line
-      stroke-width: 1px
-      stroke: map-get($palette, faint)
     
   .axis
 
@@ -276,62 +111,12 @@ nav
     path
       display: none
 
-  .circle-group
+  // .circle-group
 
-    circle
-      fill: map-get($palette, "accent-1")
+  //   circle
+  //     fill: map-get($palette, "accent-1")
 
   .line-group
 
     path
       stroke: map-get($palette, "accent-1")
-
-  .breakout-lines
-
-    line
-      stroke-width: 1px
-      stroke: map-get($palette, blue)
-      stroke-dasharray: 4 3
-
-    text
-      text-anchor: end
-      fill: map-get($palette, "text-2")
-      font-size: 11px
-
-  .mean-lines
-
-    line
-      stroke-width: 1px
-      stroke: map-get($palette, blue)
-      stroke-dasharray: 4 3
-
-    text
-      text-anchor: end
-      fill: map-get($palette, "text-2")
-      font-size: 11px
-
-  .anomaly-group
-
-    .actual-group
-
-      circle
-        fill: map-get($palette, red)
-
-    .expected-group
-
-      circle
-        fill: lighten(map-get($palette, red), 15%)
-
-    .v-lines
-
-      line
-        stroke-width: 1px
-        stroke: lighten(map-get($palette, red), 7%)
-        stroke-dasharray: 4 3
-
-  #legend
-    fill: none
-    stroke: map-get($palette, faint)
-
-    text
-      fill: map-get($palette, "text-1")

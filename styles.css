@@ -15,57 +15,14 @@
     opacity: 1;
   }
 }
-@keyframes fade-out {
-  from {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  to {
-    opacity: 0;
-  }
-}
-nav {
+body {
   animation-name: fade-in;
-  animation-duration: 0.2s;
+  animation-duration: 0.3s;
 }
 
-/********************************/
-/*    Bootstrap Resets          */
-/********************************/
-.container {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  min-height: 100%;
-}
-
-h2 {
-  margin: 0;
-}
-
-label {
-  font-family: "Raleway", sans-serif;
-}
-
-/********************************/
-/*    Class Styles              */
-/********************************/
-.flex {
-  display: flex;
-}
-
-.grow {
-  flex-grow: 1;
-}
-
-.flex-col {
-  flex-direction: column;
-}
-
-.grid {
-  display: grid;
+#top-menu {
+  animation-name: fade-in;
+  animation-duration: 0.6s;
 }
 
 /********************************/
@@ -80,125 +37,6 @@ html, body {
   width: 100%;
   background: #EEF5F9;
   margin: 0;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-}
-
-/********************************/
-/*    Navbar                    */
-/********************************/
-nav {
-  display: flex;
-  top: 0;
-  background-color: #333333;
-}
-nav .nav-wrapper {
-  height: 60px;
-  max-width: 1355px;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-}
-nav .nav-wrapper ul {
-  display: flex;
-  align-self: center;
-  margin-bottom: 0;
-  padding: 0 20px;
-}
-nav h2 {
-  font-size: 26px;
-  font-family: "Raleway", sans-serif;
-  line-height: 2;
-  text-align: center;
-  color: #fff;
-  font-weight: 600;
-}
-
-/********************************/
-/*    Hamburger Menu In Navbar  */
-/********************************/
-#slideout-menu {
-  width: 240px;
-  min-height: 400px;
-  position: absolute;
-  margin: 20px;
-  top: 60px;
-  background: rgba(204, 238, 248, 0.9);
-  border-radius: 4px;
-  border: 2px solid #fff;
-  padding: 20px;
-  font-family: "Raleway", sans-serif;
-  right: -280px;
-  opacity: 0;
-}
-#slideout-menu > div {
-  padding-bottom: 10px;
-}
-#slideout-menu a {
-  text-decoration: underline;
-}
-#slideout-menu.drawn {
-  opacity: 1;
-  transition: opacity 0.6s ease-in-out;
-  right: 0;
-}
-
-#menu-bars {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  cursor: pointer;
-  margin-left: 20px;
-}
-#menu-bars .menu-bar {
-  width: 35px;
-  height: 3px;
-  background-color: #999;
-  margin: 4px 0;
-  transition: 0.4s;
-}
-#menu-bars.change .menu-bar {
-  background-color: rgba(204, 238, 248, 0.9);
-}
-
-.modal-footer {
-  text-align: left;
-}
-
-#raise_issue button:focus, #raise_issue input:focus {
-  outline: none;
-  box-shadow: none;
-}
-#raise_issue #issue-button {
-  background-color: #EEF5F9;
-  border: 1px solid #EEF5F9;
-  text-decoration: underline;
-}
-#raise_issue #issue-button:hover {
-  border: 1px solid #EEF5F9;
-  background: rgba(159, 223, 242, 0.9);
-  transition: background 0.4s ease-in-out;
-}
-#raise_issue #raise_issue_api {
-  background: rgba(204, 238, 248, 0.9);
-}
-#raise_issue #raise_issue_api:hover {
-  background: rgba(159, 223, 242, 0.9);
-  transition: background 0.4s ease-in-out;
-}
-#raise_issue input:focus {
-  border: 1px solid #02abac;
-}
-#raise_issue .selectize-input.focus {
-  box-shadow: none;
-  border: 1px solid #02abac;
-}
-
-#data1 table {
-  margin: 0 auto 20px;
 }
 
 #main-article {
@@ -229,13 +67,12 @@ nav h2 {
   margin: 10px;
 }
 
+/********************************/
+/*    Chart                     */
+/********************************/
 .g3-breakout .chart-title {
   font-family: "Raleway", sans-serif;
   font-size: 13px;
-}
-.g3-breakout .borders line {
-  stroke-width: 1px;
-  stroke: #ddd;
 }
 .g3-breakout .axis line {
   stroke: #ddd;
@@ -243,49 +80,8 @@ nav h2 {
 .g3-breakout .axis path {
   display: none;
 }
-.g3-breakout .circle-group circle {
-  fill: #ec6b2d;
-}
 .g3-breakout .line-group path {
   stroke: #ec6b2d;
-}
-.g3-breakout .breakout-lines line {
-  stroke-width: 1px;
-  stroke: #16E7F5;
-  stroke-dasharray: 4 3;
-}
-.g3-breakout .breakout-lines text {
-  text-anchor: end;
-  fill: #fff;
-  font-size: 11px;
-}
-.g3-breakout .mean-lines line {
-  stroke-width: 1px;
-  stroke: #16E7F5;
-  stroke-dasharray: 4 3;
-}
-.g3-breakout .mean-lines text {
-  text-anchor: end;
-  fill: #fff;
-  font-size: 11px;
-}
-.g3-breakout .anomaly-group .actual-group circle {
-  fill: #e7182d;
-}
-.g3-breakout .anomaly-group .expected-group circle {
-  fill: #ee5d6c;
-}
-.g3-breakout .anomaly-group .v-lines line {
-  stroke-width: 1px;
-  stroke: #ea384a;
-  stroke-dasharray: 4 3;
-}
-.g3-breakout #legend {
-  fill: none;
-  stroke: #ddd;
-}
-.g3-breakout #legend text {
-  fill: #0d0f05;
 }
 
 /*# sourceMappingURL=styles.css.map */
